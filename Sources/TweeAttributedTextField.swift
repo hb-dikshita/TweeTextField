@@ -5,7 +5,7 @@
 import UIKit
 
 /// An object of the class can show the custom info label under text field.
-open class TweeAttributedTextField: TweeActiveTextField {
+public class TweeAttributedTextField: TweeActiveTextField {
 
 	/// Info label that is shown for a user. This label will appear under the text field.
 	/// You can use it to configure appearance.
@@ -34,7 +34,7 @@ open class TweeAttributedTextField: TweeActiveTextField {
 
 	// MARK: Methods
 
-	override open func awakeFromNib() {
+	override public func awakeFromNib() {
 		super.awakeFromNib()
 		plugLabelIfNeeded()
 	}

@@ -5,7 +5,7 @@
 import UIKit
 
 /// An object of the class has a customized placeholder label which has animations on the beginning and ending editing.
-open class TweePlaceholderTextField: UITextField {
+public class TweePlaceholderTextField: UITextField {
 
 	/// Animation type when a user begins editing.
 	/// - immediately: Sets minimum font size immediately when a user begins editing.
@@ -55,13 +55,13 @@ open class TweePlaceholderTextField: UITextField {
 	/// Custom placeholder label. You can use it to style placeholder text.
 	public private(set) lazy var placeholderLabel = UILabel()
 
-	open override var text: String? {
+	public override var text: String? {
 		didSet {
 			setCorrectPlaceholderSize()
 		}
 	}
 
-	open override var attributedText: NSAttributedString? {
+	public override var attributedText: NSAttributedString? {
 		didSet {
 			setCorrectPlaceholderSize()
 		}
@@ -77,7 +77,7 @@ open class TweePlaceholderTextField: UITextField {
 
 	// MARK: Methods
 
-	override open func awakeFromNib() {
+	override public func awakeFromNib() {
 		super.awakeFromNib()
 		initializeTextField()
 	}
@@ -88,7 +88,6 @@ open class TweePlaceholderTextField: UITextField {
 		minimizeFontAnimation = FontAnimation(target: self, selector: #selector(minimizePlaceholderFontSize))
 		maximizeFontAnimation = FontAnimation(target: self, selector: #selector(maximizePlaceholderFontSize))
 
-		placeholderLabel.font = font ?? placeholderLabel.font
 		placeholderLabel.font = placeholderLabel.font.withSize(originalPlaceholderFontSize)
 	}
 
@@ -138,6 +137,7 @@ open class TweePlaceholderTextField: UITextField {
 			}
 		}) { _ in
 			self.minimizeFontAnimation.stop()
+            self.placeholderLabel.isHidden = true;
 		}
 	}
 
@@ -172,6 +172,7 @@ open class TweePlaceholderTextField: UITextField {
 			self.maximizeFontAnimation.start()
 		}) { (_) in
 			self.maximizeFontAnimation.stop()
+            self.placeholderLabel.isHidden = false;
 			// self.placeholderLabel.font = self.placeholderLabel.font.withSize(self.originalPlaceholderFontSize)
 		}
 	}

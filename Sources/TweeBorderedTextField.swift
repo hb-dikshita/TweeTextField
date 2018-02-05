@@ -11,7 +11,7 @@ internal class Line {
 }
 
 /// An object of the class can show bottom line permanently.
-open class TweeBorderedTextField: TweePlaceholderTextField {
+public class TweeBorderedTextField: TweePlaceholderTextField {
 
 	private var line = Line()
 
@@ -39,7 +39,7 @@ open class TweeBorderedTextField: TweePlaceholderTextField {
 
 	// MARK: Methods
 
-	override open func awakeFromNib() {
+	override public func awakeFromNib() {
 		super.awakeFromNib()
 		configureBottomLine()
 	}
@@ -49,7 +49,7 @@ open class TweeBorderedTextField: TweePlaceholderTextField {
 		layer.addSublayer(line.layer)
 	}
 
-	override open func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 		calculateLine(line)
 	}
