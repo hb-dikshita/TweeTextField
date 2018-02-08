@@ -25,7 +25,7 @@ public class TweePlaceholderTextField: UITextField {
 	/// Original (maximum) font size for the custom placeholder.
 	@IBInspectable public private(set) var originalPlaceholderFontSize: CGFloat = 17
 	/// Placeholder animation duration.
-	@IBInspectable public private(set) var placeholderDuration: Double = 0.5
+	@IBInspectable public private(set) var placeholderDuration: Double = 0.1
 	/// Color of custom placeholder.
 	@IBInspectable public var placeholderColor: UIColor? {
 		get {
@@ -132,12 +132,13 @@ public class TweePlaceholderTextField: UITextField {
 			switch self.minimizationAnimationType {
 			case .immediately:
 				self.placeholderLabel.font = self.placeholderLabel.font.withSize(self.minimumPlaceholderFontSize)
+                self.placeholderLabel.alpha = 0
 			case .smoothly:
+                self.placeholderLabel.alpha = 0
 				self.minimizeFontAnimation.start()
 			}
 		}) { _ in
 			self.minimizeFontAnimation.stop()
-            self.placeholderLabel.isHidden = true;
 		}
 	}
 
@@ -169,10 +170,11 @@ public class TweePlaceholderTextField: UITextField {
 
 		UIView.animate(withDuration: placeholderDuration, delay: 0, options: [.preferredFramesPerSecond30], animations: {
 			self.layoutIfNeeded()
+            self.placeholderLabel.alpha = 1
 			self.maximizeFontAnimation.start()
 		}) { (_) in
+            self.placeholderLabel.alpha = 1
 			self.maximizeFontAnimation.stop()
-            self.placeholderLabel.isHidden = false;
 			// self.placeholderLabel.font = self.placeholderLabel.font.withSize(self.originalPlaceholderFontSize)
 		}
 	}
