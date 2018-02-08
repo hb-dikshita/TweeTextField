@@ -25,7 +25,7 @@ public class TweePlaceholderTextField: UITextField {
 	/// Original (maximum) font size for the custom placeholder.
 	@IBInspectable public private(set) var originalPlaceholderFontSize: CGFloat = 17
 	/// Placeholder animation duration.
-	@IBInspectable public private(set) var placeholderDuration: Double = 0.1
+	@IBInspectable public private(set) var placeholderDuration: Double = 0.4
 	/// Color of custom placeholder.
 	@IBInspectable public var placeholderColor: UIColor? {
 		get {
